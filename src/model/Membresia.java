@@ -2,16 +2,19 @@ package model;
 
 import java.util.Date;
 
+import model.enumeration.PeriodoEnum;
+
 public class Membresia {
+
 	private Date fechaInicio;
 	private Date fechaFin;
-	private String tipo;
-	
-	public Membresia(Date fechaInicio, Date fechaFin, String tipo) {
+	private PeriodoEnum periodo;
+
+	public Membresia(Date fechaInicio, Date fechaFin, PeriodoEnum periodo) {
 		super();
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		this.tipo = tipo;
+		this.periodo = periodo;
 	}
 
 	public Date getFechaInicio() {
@@ -30,12 +33,12 @@ public class Membresia {
 		this.fechaFin = fechaFin;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public PeriodoEnum getPeriodo() {
+		return periodo;
 	}
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setPeriodo(PeriodoEnum periodo) {
+		this.periodo = periodo;
 	}
-	 
+
 }

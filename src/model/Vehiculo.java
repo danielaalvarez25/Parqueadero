@@ -1,51 +1,72 @@
 package model;
+import model.enumeration.TipoVehiculoEnum;
 
 public class Vehiculo {
-	protected String placa;
-	protected String color;
-	protected String Modelo;
-	protected Cliente cliente;
+
+	private String placa;
+	private String color;
+	private String modelo;
 	private TipoVehiculoEnum tipoVehiculo;
-	protected Vehiculo(String placa, String color, String modelo, Cliente cliente, TipoVehiculoEnum tipoVehiculo) {
+	private double precio;
+	private Membresia membresia;
+
+	public Vehiculo(String placa, String color, String modelo, TipoVehiculoEnum tipoVehiculo, double precio,
+			Membresia membresia) {
 		super();
 		this.placa = placa;
 		this.color = color;
-		Modelo = modelo;
-		this.cliente = cliente;
+		this.modelo = modelo;
 		this.tipoVehiculo = tipoVehiculo;
+		this.precio = precio;
+		this.membresia = membresia;
 	}
+
 	public String getPlaca() {
 		return placa;
 	}
+
 	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
+
 	public String getColor() {
 		return color;
 	}
+
 	public void setColor(String color) {
 		this.color = color;
 	}
+
 	public String getModelo() {
-		return Modelo;
+		return modelo;
 	}
+
 	public void setModelo(String modelo) {
-		Modelo = modelo;
+		this.modelo = modelo;
 	}
-	public Cliente getCliente() {
-		return cliente;
-	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+
 	public TipoVehiculoEnum getTipoVehiculo() {
 		return tipoVehiculo;
 	}
+
 	public void setTipoVehiculo(TipoVehiculoEnum tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
 	}
 
+	public double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public Membresia getMembresia() {
+		return membresia;
+	}
+
+	public void setMembresia(Membresia membresia) {
+		this.membresia = membresia;
+	}
+
 }
-
-
-	

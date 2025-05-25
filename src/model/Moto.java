@@ -1,15 +1,12 @@
 package model;
+import model.enumeration.TipoVehiculoEnum;
 
 public class Moto extends Vehiculo{
 
-	protected Moto(String placa, String color, String modelo, Cliente cliente, TipoVehiculoEnum tipoVehiculo) {
-		super(placa, color, modelo, cliente, tipoVehiculo);
-		
+	public Moto(String placa, String color, String modelo, TipoVehiculoEnum tipoVehiculo, double precio,
+			Membresia membresia) {
+		super(placa, color, modelo, tipoVehiculo, precio, membresia);
+		// TODO Auto-generated constructor stub
 	}
 
-	
-		
-	
-
-	
 }
