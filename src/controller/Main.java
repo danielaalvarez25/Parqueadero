@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 import model.Cliente;
-import model.Registro;
 import model.Vehiculo;
 import model.enumeration.TipoVehiculoEnum;
 import service.FacturaService;
@@ -39,7 +38,7 @@ public class Main {
             switch (opcion) {
                 case "1" -> configurarParqueadero();
                 case "2" -> mostrarGestionClientes();
-                case "3" -> gestionarVehiculos();
+                case "3" -> mostrarGestionVehiculos();
                 case "4" -> registrarIngreso();
                 case "5" -> registrarSalida();
                 case "6" -> mostrarReportes();
@@ -67,15 +66,6 @@ public class Main {
 
         JOptionPane.showMessageDialog(null, "Parqueadero configurado correctamente.");
     }
-
-    private static void gestionarClientes() {
-        String nombreCliente = JOptionPane.showInputDialog("Nombre del cliente:");
-        String cedula = JOptionPane.showInputDialog("Cédula:");
-        String telefono = JOptionPane.showInputDialog("Teléfono:");
-        String correo = JOptionPane.showInputDialog("Correo:");
-        Cliente cliente = new Cliente(nombreCliente, cedula, telefono, correo, new ArrayList<>());
-        parqueaderoService.registrarCliente(cliente);
-    }
     
     private static void mostrarGestionClientes() {
         String subop = JOptionPane.showInputDialog("Gestión de Clientes:\n"
@@ -96,7 +86,6 @@ public class Main {
                 if (nombreCliente != null && cedula != null && telefono != null && correo != null) {
                     Cliente cliente = new Cliente(nombreCliente, cedula, telefono, correo, new ArrayList<>());
                     parqueaderoService.registrarCliente(cliente);
-                    JOptionPane.showMessageDialog(null, "Cliente registrado.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Datos incompletos. No se registró el cliente.");
                 }
@@ -154,6 +143,103 @@ public class Main {
             default -> JOptionPane.showMessageDialog(null, "Opción no válida.");
         }
     }
+    
+    private static void mostrarGestionVehiculos() {
+        String subop = JOptionPane.showInputDialog("Gestión de Vehículos:\n"
+                + "1. Registrar vehículo\n"
+                + "2. Buscar vehículo por placa\n"
+                + "3. Actualizar datos del vehículo");
+
+        if (subop == null) return;
+
+        switch (subop) {
+            case "1" -> {
+            	   String ced = JOptionPane.showInputDialog("Cédula del cliente:");
+                   Cliente cli = parqueaderoService.buscarCliente(ced);
+                   if (cli != null) {
+                       String placa = JOptionPane.showInputDialog("Placa:");
+                       String color = JOptionPane.showInputDialog("Color:");
+                       String modelo = JOptionPane.showInputDialog("Modelo:");
+                       String tipo = JOptionPane.showInputDialog("Tipo (MOTO, CARRO, CAMION):");
+                       try {
+                           TipoVehiculoEnum tipoVehiculo = TipoVehiculoEnum.valueOf(tipo.toUpperCase());
+                           Vehiculo vehiculo = new Vehiculo(placa, color, modelo, tipoVehiculo, null);
+                           boolean registrado = parqueaderoService.registrarVehiculo(vehiculo, cli);
+                           if (registrado) {
+                               JOptionPane.showMessageDialog(null, "Vehículo registrado correctamente.");
+                           }
+                       } catch (IllegalArgumentException e) {
+                           JOptionPane.showMessageDialog(null, "Tipo de vehículo inválido.");
+                       }
+                   } else {
+                       JOptionPane.showMessageDialog(null, "Cliente no encontrado");
+                   }
+            }
+
+            case "2" -> {
+                String cedula = JOptionPane.showInputDialog("Ingrese la cédula del cliente:");
+                Cliente cliente = parqueaderoService.buscarCliente(cedula);
+
+                if (cliente == null) {
+                    JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+                    return;
+                }
+
+                String placaBuscar = JOptionPane.showInputDialog("Placa del vehículo a buscar (dejar en blanco si no desea filtrar):");
+
+                String[] opciones = {"MOTO", "CARRO", "CAMION", "TODOS"};
+                int seleccion = JOptionPane.showOptionDialog(
+                    null,
+                    "Seleccione el tipo de vehículo:",
+                    "Tipo de Vehículo",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    opciones,
+                    opciones[0]
+                );
+
+                TipoVehiculoEnum tipoVehiculo = null;
+                if (seleccion >= 0 && seleccion < 3) {
+                    tipoVehiculo = TipoVehiculoEnum.valueOf(opciones[seleccion]);
+                }
+
+                ArrayList<Vehiculo> vehiculosEncontrados = parqueaderoService.buscarVehiculo(placaBuscar, tipoVehiculo, cliente);
+
+                if (vehiculosEncontrados.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Vehículo no encontrado.");
+                } else {
+                    StringBuilder sb = new StringBuilder("Vehículos encontrados:\n");
+                    for (Vehiculo v : vehiculosEncontrados) {
+                        sb.append("- Placa: ").append(v.getPlaca())
+                          .append(" | Modelo: ").append(v.getModelo())
+                          .append(" | Tipo: ").append(v.getTipoVehiculo()).append("\n");
+                    }
+                    JOptionPane.showMessageDialog(null, sb.toString());
+                }
+            }
+
+
+            case "3" -> {
+                String placaActualizar = JOptionPane.showInputDialog("Placa del vehículo a actualizar:");
+//                Vehiculo v = parqueaderoService.actualizarVehiculo(null, null);
+//                if (v != null) {
+//                    String nuevaMarca = JOptionPane.showInputDialog("Nueva marca:", v.getPlaca());
+//                    String nuevoModelo = JOptionPane.showInputDialog("Nuevo modelo:", v.getModelo());
+//
+//                    if (nuevaMarca != null && !nuevaMarca.trim().isEmpty()) v.setMarca(nuevaMarca);
+//                    if (nuevoModelo != null && !nuevoModelo.trim().isEmpty()) v.setModelo(nuevoModelo);
+//
+//                    JOptionPane.showMessageDialog(null, "Vehículo actualizado.");
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Vehículo no encontrado.");
+//                }
+            }
+
+            default -> JOptionPane.showMessageDialog(null, "Opción no válida.");
+        }
+    }
+
 
 
 

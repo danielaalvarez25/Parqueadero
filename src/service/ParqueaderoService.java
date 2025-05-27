@@ -293,7 +293,6 @@ public class ParqueaderoService {
 		}
 
 		cliente.getVehiculos().add(vehiculo);
-		JOptionPane.showMessageDialog(null, "Vehículo registrado correctamente.");
 		return true;
 	}
 	/**
