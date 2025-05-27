@@ -2,17 +2,29 @@ package model;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
+/**
+ * Clase que modela el cliente
+ */
 public class Cliente {
-	
+
+	/**
+	 * ATRIBUTOS
+	 */
 	private String nombre;
 	private String cedula;
 	private String telefono;
 	private String correo;
 	private ArrayList<Vehiculo> vehiculos;
 
-	private Cliente(String nombre, String cedula, String telefono, String correo, ArrayList<Vehiculo> vehiculos) {
+	/**
+	 * Metodo constructor para cliente
+	 * @param nombre del cliente
+	 * @param cedula del cliente
+	 * @param telefono del cliente
+	 * @param correo del cliente
+	 * @param vehiculos lista de vehiculos del cliente
+	 */
+	public Cliente(String nombre, String cedula, String telefono, String correo, ArrayList<Vehiculo> vehiculos) {
 		super();
 		this.nombre = nombre;
 		this.cedula = cedula;
@@ -20,6 +32,10 @@ public class Cliente {
 		this.correo = correo;
 		this.vehiculos = vehiculos;
 	}
+
+	/**
+	 ******************************* GETTERS AND SETTERS **************************************
+	 */
 
 	public String getNombre() {
 		return nombre;

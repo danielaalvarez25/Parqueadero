@@ -1,26 +1,37 @@
 package model;
 import model.enumeration.TipoVehiculoEnum;
-
+/**
+ * Clase que modela el vehiculo
+ */
 public class Vehiculo {
-
+/**
+ * Atributos
+ */
 	private String placa;
 	private String color;
 	private String modelo;
 	private TipoVehiculoEnum tipoVehiculo;
-	private double precio;
 	private Membresia membresia;
-
-	public Vehiculo(String placa, String color, String modelo, TipoVehiculoEnum tipoVehiculo, double precio,
-			Membresia membresia) {
+/**
+ * Metodo constructor para vehiculo
+ * @param placa
+ * @param color
+ * @param modelo
+ * @param tipoVehiculo
+ * @param membresia
+ */
+	public Vehiculo(String placa, String color, String modelo, TipoVehiculoEnum tipoVehiculo, Membresia membresia) {
 		super();
 		this.placa = placa;
 		this.color = color;
 		this.modelo = modelo;
 		this.tipoVehiculo = tipoVehiculo;
-		this.precio = precio;
 		this.membresia = membresia;
 	}
-
+/**
+ * GETTERS AND SETTERS
+ * @return
+ */
 	public String getPlaca() {
 		return placa;
 	}
@@ -51,14 +62,6 @@ public class Vehiculo {
 
 	public void setTipoVehiculo(TipoVehiculoEnum tipoVehiculo) {
 		this.tipoVehiculo = tipoVehiculo;
-	}
-
-	public double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(double precio) {
-		this.precio = precio;
 	}
 
 	public Membresia getMembresia() {

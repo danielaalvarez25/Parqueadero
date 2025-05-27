@@ -1,33 +1,55 @@
 package model;
 
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
+/**
+ * Clase que modela el cliente
+ */
 
 public class Parqueadero {
-	
+	/**
+	 * ATRIBUTOS
+	 */
+
 	private String nombre;
 	private String direccion;
 	private String representante;
 	private ArrayList<String> contactos;
-	
+
 	private ArrayList<Registro> registros;
 	private ArrayList<Cliente> clientes;
-	
+
+	private double tarifaMoto;
+	private double tarifaCarro;
+	private double tarifaCamion;
+
+
 	public Parqueadero() {
 		super();
+		this.contactos = new ArrayList<>();
+		this.registros = new ArrayList<>();
+		this.clientes = new ArrayList<>();
 	}
+
+	/**
+	 * Metodo constructor para parquadero
+	 * @param nombre
+	 * @param direccion
+	 * @param representante
+	 */
 
 	public Parqueadero(String nombre, String direccion, String representante) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.representante = representante;
-		this.contactos = new ArrayList<String>();
-		this.registros = new ArrayList<Registro>();
-		this.clientes = new ArrayList<Cliente>();
+		this.contactos = new ArrayList<>();
+		this.registros = new ArrayList<>();
+		this.clientes = new ArrayList<>();
 	}
-
+/**
+ * GETTERS AND SETTERS
+ * @return
+ */
 	public String getNombre() {
 		return nombre;
 	}
@@ -76,6 +98,28 @@ public class Parqueadero {
 		this.clientes = clientes;
 	}
 
-	
-	
+	public double getTarifaMoto() {
+		return tarifaMoto;
+	}
+
+	public void setTarifaMoto(double tarifaMoto) {
+		this.tarifaMoto = tarifaMoto;
+	}
+
+	public double getTarifaCarro() {
+		return tarifaCarro;
+	}
+
+	public void setTarifaCarro(double tarifaCarro) {
+		this.tarifaCarro = tarifaCarro;
+	}
+
+	public double getTarifaCamion() {
+		return tarifaCamion;
+	}
+
+	public void setTarifaCamion(double tarifaCamion) {
+		this.tarifaCamion = tarifaCamion;
+	}
+
 }
