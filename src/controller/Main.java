@@ -29,6 +29,8 @@ public class Main {
                     + "5. Registrar Salida\n"
                     + "6. Reportes\n"
                     + "7. Salir", "Menú", JOptionPane.QUESTION_MESSAGE);
+            
+            
 
             if (opcion == null) {
                 JOptionPane.showMessageDialog(null, "Saliendo del sistema.");
